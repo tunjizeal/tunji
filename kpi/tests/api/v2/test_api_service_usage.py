@@ -47,14 +47,14 @@ class ServiceUsageAPITestCase(BaseAssetTestCase):
 
         submission = {
             '__version__': v_uid,
-            'q1': 'audio_conversion_test_clip.mp4',
+            'q1': 'audio_conversion_test_clip.3gp',
             'q2': 'audio_conversion_test_image.jpg',
             '_uuid': str(uuid.uuid4()),
             '_attachments': [
                 {
                     'id': 1,
-                    'download_url': 'http://testserver/anotheruser/audio_conversion_test_clip.mp4',
-                    'filename': 'anotheruser/audio_conversion_test_clip.mp4',
+                    'download_url': 'http://testserver/anotheruser/audio_conversion_test_clip.3gp',
+                    'filename': 'anotheruser/audio_conversion_test_clip.3gp',
                     'mimetype': 'video/mp4',
                 },
                 {
@@ -75,14 +75,14 @@ class ServiceUsageAPITestCase(BaseAssetTestCase):
 
         submission1 = {
             '__version__': v_uid,
-            'q1': 'audio_conversion_test_clip.mp4',
+            'q1': 'audio_conversion_test_clip.3gp',
             'q2': 'audio_conversion_test_image.jpg',
             '_uuid': str(uuid.uuid4()),
             '_attachments': [
                 {
                     'id': 3,
-                    'download_url': 'http://testserver/anotheruser/audio_conversion_test_clip.mp4',
-                    'filename': 'anotheruser/audio_conversion_test_clip.mp4',
+                    'download_url': 'http://testserver/anotheruser/audio_conversion_test_clip.3gp',
+                    'filename': 'anotheruser/audio_conversion_test_clip.3gp',
                     'mimetype': 'video/mp4',
                 },
                 {
@@ -96,14 +96,14 @@ class ServiceUsageAPITestCase(BaseAssetTestCase):
         }
         submission2 = {
             '__version__': v_uid,
-            'q1': 'audio_conversion_test_clip.mp4',
+            'q1': 'audio_conversion_test_clip.3gp',
             'q2': 'audio_conversion_test_image.jpg',
             '_uuid': str(uuid.uuid4()),
             '_attachments': [
                 {
                     'id': 5,
-                    'download_url': 'http://testserver/anotheruser/audio_conversion_test_clip.mp4',
-                    'filename': 'anotheruser/audio_conversion_test_clip.mp4',
+                    'download_url': 'http://testserver/anotheruser/audio_conversion_test_clip.3gp',
+                    'filename': 'anotheruser/audio_conversion_test_clip.3gp',
                     'mimetype': 'video/mp4',
                 },
                 {
@@ -123,7 +123,7 @@ class ServiceUsageAPITestCase(BaseAssetTestCase):
 
     def __expected_file_size(self):
         return os.path.getsize(
-            settings.BASE_DIR + '/kpi/tests/audio_conversion_test_clip.mp4'
+            settings.BASE_DIR + '/kpi/tests/audio_conversion_test_clip.3gp'
         ) + os.path.getsize(settings.BASE_DIR + '/kpi/tests/audio_conversion_test_image.jpg')
 
     def test_anonymous_user(self):

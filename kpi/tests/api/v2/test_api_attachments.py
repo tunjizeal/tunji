@@ -49,14 +49,14 @@ class AttachmentApiTests(BaseAssetTestCase):
 
         submission = {
             '__version__': v_uid,
-            'q1': 'audio_conversion_test_clip.mp4',
+            'q1': 'audio_conversion_test_clip.3gp',
             'q2': 'audio_conversion_test_image.jpg',
             '_uuid': str(uuid.uuid4()),
             '_attachments': [
                 {
                     'id': 1,
-                    'download_url': 'http://testserver/someuser/audio_conversion_test_clip.mp4',
-                    'filename': 'someuser/audio_conversion_test_clip.mp4',
+                    'download_url': 'http://testserver/someuser/audio_conversion_test_clip.3gp',
+                    'filename': 'someuser/audio_conversion_test_clip.3gp',
                     'mimetype': 'video/mp4',
                 },
                 {
