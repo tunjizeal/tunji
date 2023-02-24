@@ -1,6 +1,5 @@
 const BundleTracker = require('webpack-bundle-tracker');
 const ExtractTranslationKeysPlugin = require('webpack-extract-translation-keys-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 const fs = require('fs');
 const lodash = require('lodash');
 const path = require('path');
@@ -25,52 +24,14 @@ const postCssLoader = {
   },
 };
 
-const babelLoader = {
-  loader: 'babel-loader',
-  options: {
-    presets: ['@babel/preset-env', '@babel/preset-react'],
-    plugins: ['react-hot-loader/babel'],
-  },
-};
 
 const commonOptions = {
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.coffee$/,
+        test: /\.(js|jsx|es6|ts|tsx)$/,
         exclude: /node_modules/,
-        loader: 'less-terrible-coffeelint-loader',
-        options: {
-          failOnErrors: true,
-          failOnWarns: false,
-          // custom reporter function that only returns errors (no warnings)
-          reporter: function (errors) {
-            errors.forEach((error) => {
-              if (error.level === 'error') {
-                this.emitError([
-                  error.lineNumber,
-                  error.message,
-                ].join(' ') + '\n');
-              }
-            });
-          },
-        },
-      },
-      {
-        test: /\.(js|jsx|es6)$/,
-        exclude: /node_modules/,
-        use: babelLoader,
-      },
-      {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules/,
-        use: [
-          babelLoader,
-          {
-            loader: 'ts-loader',
-          },
-        ],
+        use: 'swc-loader',
       },
       {
         test: /\.css$/,
@@ -125,11 +86,8 @@ const commonOptions = {
       functionName: 't',
       output: path.join(outputPath, 'extracted-strings.json'),
     }),
-    new webpack.ProvidePlugin({'$': 'jquery'}),
-    new ESLintPlugin({
-      quiet: true,
-      extensions: ['js', 'jsx', 'ts', 'tsx', 'es6'],
-    }),
+
+    new webpack.ProvidePlugin({$: 'jquery'}),
   ],
 };
 
