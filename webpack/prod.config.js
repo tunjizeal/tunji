@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const publicPath = (process.env.KPI_PREFIX === '/' ? '' : (process.env.KPI_PREFIX || '')) + '/static/compiled/';
 const WebpackCommon = require('./webpack.common');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = WebpackCommon({
   mode: 'production',
@@ -15,6 +16,14 @@ module.exports = WebpackCommon({
         },
       },
     },
+    // Use swc to speed up the production build, too
+    minimizer: [
+      new TerserPlugin({
+        minify: TerserPlugin.swcMinify,
+        // options passed to swc: https://swc.rs/docs/configuration/minification
+        terserOptions: {},
+      }),
+    ],
   },
   entry: {
     app: './jsapp/js/main.es6',
